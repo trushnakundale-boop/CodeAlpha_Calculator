@@ -22,6 +22,6 @@ script.js
 ### 📸 Screenshots
 (![Add your screenshot here](Screenshot_Calculator.png))
 
-### 👨‍💻 Intern: Shubham Raju Nagpure  
-Student ID: CA/DE1/7143  
+### 👨‍💻 Intern: Trushna Dinesh Kundale  
+Student ID: CA/DF1/24372  
 Domain: Frontend Development
