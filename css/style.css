@@ -1,0 +1,354 @@
+/* Base Variables */
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --calc-bg: rgba(30, 41, 59, 0.7);
+    --calc-border: rgba(255, 255, 255, 0.1);
+    --calc-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --btn-bg: rgba(255, 255, 255, 0.05);
+    --btn-hover: rgba(255, 255, 255, 0.1);
+    --btn-active: rgba(255, 255, 255, 0.15);
+    --btn-text: #f8fafc;
+    
+    --operator-bg: rgba(56, 189, 248, 0.1);
+    --operator-text: #38bdf8;
+    --operator-hover: rgba(56, 189, 248, 0.2);
+    
+    --equals-bg: linear-gradient(135deg, #38bdf8, #2563eb);
+    --equals-hover: linear-gradient(135deg, #7dd3fc, #3b82f6);
+    --equals-text: #ffffff;
+    
+    --helper-bg: rgba(244, 63, 94, 0.1);
+    --helper-text: #f43f5e;
+    --helper-hover: rgba(244, 63, 94, 0.2);
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+    --bg-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    --calc-bg: rgba(255, 255, 255, 0.7);
+    --calc-border: rgba(0, 0, 0, 0.1);
+    --calc-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    
+    --btn-bg: rgba(0, 0, 0, 0.03);
+    --btn-hover: rgba(0, 0, 0, 0.08);
+    --btn-active: rgba(0, 0, 0, 0.12);
+    --btn-text: #1e293b;
+    
+    --operator-bg: rgba(14, 165, 233, 0.1);
+    --operator-text: #0284c7;
+    --operator-hover: rgba(14, 165, 233, 0.2);
+    
+    --equals-bg: linear-gradient(135deg, #0ea5e9, #2563eb);
+    --equals-hover: linear-gradient(135deg, #38bdf8, #3b82f6);
+    --equals-text: #ffffff;
+    
+    --helper-bg: rgba(225, 29, 72, 0.1);
+    --helper-text: #e11d48;
+    --helper-hover: rgba(225, 29, 72, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+}
+
+.app-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: var(--calc-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--calc-border);
+    box-shadow: var(--calc-shadow);
+}
+
+/* Calculator Card */
+.calculator {
+    width: 380px;
+    max-width: 95vw;
+    border-radius: 30px;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Display */
+.display {
+    text-align: right;
+    margin-bottom: 2rem;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 10px;
+}
+
+.previous-operand {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.current-operand {
+    color: var(--text-primary);
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1;
+    transition: font-size 0.2s;
+}
+
+/* Keypad */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    outline: none;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-size: 1.5rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background: var(--btn-active);
+    transform: translateY(1px) scale(0.95);
+}
+
+/* Button Variants */
+.btn.zero {
+    grid-column: span 2;
+    border-radius: 30px;
+    aspect-ratio: auto;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+.btn.operator {
+    background: var(--operator-bg);
+    color: var(--operator-text);
+    font-size: 1.8rem;
+}
+
+.btn.operator:hover {
+    background: var(--operator-hover);
+}
+
+.btn.helper {
+    background: var(--helper-bg);
+    color: var(--helper-text);
+    font-size: 1.4rem;
+}
+
+.btn.helper:hover {
+    background: var(--helper-hover);
+}
+
+.btn.equals {
+    background: var(--equals-bg);
+    color: var(--equals-text);
+    font-size: 2rem;
+    box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
+}
+
+.btn.equals:hover {
+    background: var(--equals-hover);
+    box-shadow: 0 15px 25px -10px rgba(37, 99, 235, 0.6);
+}
+
+/* Theme Toggle & History Button */
+.theme-btn, .history-btn {
+    position: absolute;
+    top: 20px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 20;
+    padding: 10px;
+}
+
+.theme-btn {
+    right: 20px;
+}
+
+.history-btn {
+    left: 20px;
+}
+
+.theme-btn:hover, .history-btn:hover {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+/* History Panel */
+.history-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding: 2rem;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.history-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.history-panel h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+#history-list {
+    flex: 1;
+    list-style: none;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding-right: 5px;
+}
+
+/* Custom Scrollbar */
+#history-list::-webkit-scrollbar {
+    width: 4px;
+}
+#history-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+#history-list::-webkit-scrollbar-thumb {
+    background: var(--text-secondary);
+    border-radius: 4px;
+}
+
+.history-item {
+    margin-bottom: 1rem;
+    text-align: right;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--calc-border);
+    animation: fadeIn 0.3s forwards;
+}
+
+.history-item .expr {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.history-item .res {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+}
+
+.clear-history-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background: var(--helper-bg);
+    color: var(--helper-text);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 600;
+}
+
+.clear-history-btn:hover {
+    background: var(--helper-hover);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .calculator {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+    }
+    .history-panel {
+        border-radius: 0;
+    }
+    .display {
+        flex: 1;
+    }
+}

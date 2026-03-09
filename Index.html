@@ -1,47 +1,75 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Simple Calculator - CodeAlpha</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAlpha Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <main class="calc-wrapper">
-        <h1>Calculator</h1>
-        <div class="calculator">
-            <div id="display" class="display">0</div>
-            <div class="buttons">
-                <button class="btn wide" data-action="clear">C</button>
-                <button class="btn" data-action="back">⌫</button>
-                <button class="btn" data-value="/">÷</button>
+    <div class="app-container">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+            <i class="fas fa-sun toggle-icon"></i>
+        </button>
 
-                <button class="btn" data-value="7">7</button>
-                <button class="btn" data-value="8">8</button>
-                <button class="btn" data-value="9">9</button>
-                <button class="btn" data-value="*">×</button>
+        <!-- Calculator Card -->
+        <div class="calculator glass-panel">
+            
+            <!-- History Panel Toggle (Mobile view primarily or absolute positioned) -->
+            <button id="history-toggle" class="history-btn" aria-label="Toggle History">
+                <i class="fas fa-history"></i>
+            </button>
+            
+            <!-- History Panel -->
+            <div id="history-panel" class="history-panel hidden glass-panel">
+                <h3>History</h3>
+                <ul id="history-list">
+                    <!-- History items will be injected here -->
+                </ul>
+                <button id="clear-history" class="clear-history-btn">Clear History</button>
+            </div>
 
-                <button class="btn" data-value="4">4</button>
-                <button class="btn" data-value="5">5</button>
-                <button class="btn" data-value="6">6</button>
-                <button class="btn" data-value="-">−</button>
+            <!-- Display Area -->
+            <div class="display">
+                <div id="previous-operand" class="previous-operand"></div>
+                <div id="current-operand" class="current-operand">0</div>
+            </div>
 
-                <button class="btn" data-value="1">1</button>
-                <button class="btn" data-value="2">2</button>
-                <button class="btn" data-value="3">3</button>
-                <button class="btn" data-value="+">+</button>
-
-                <button class="btn" data-value="0">0</button>
-                <button class="btn" data-value=".">.</button>
-                <button class="btn wide equals" data-action="equals">=</button>
+            <!-- Keypad -->
+            <div class="keypad">
+                <!-- Row 1 -->
+                <button class="btn action-btn operator helper" data-action="clear">C</button>
+                <button class="btn action-btn operator helper" data-action="delete"><i class="fas fa-backspace"></i></button>
+                <button class="btn action-btn operator helper" data-action="percent">%</button>
+                <button class="btn action-btn operator divide" data-action="divide">÷</button>
+                
+                <!-- Row 2 -->
+                <button class="btn number" data-value="7">7</button>
+                <button class="btn number" data-value="8">8</button>
+                <button class="btn number" data-value="9">9</button>
+                <button class="btn action-btn operator multiply" data-action="multiply">×</button>
+                
+                <!-- Row 3 -->
+                <button class="btn number" data-value="4">4</button>
+                <button class="btn number" data-value="5">5</button>
+                <button class="btn number" data-value="6">6</button>
+                <button class="btn action-btn operator subtract" data-action="subtract">−</button>
+                
+                <!-- Row 4 -->
+                <button class="btn number" data-value="1">1</button>
+                <button class="btn number" data-value="2">2</button>
+                <button class="btn number" data-value="3">3</button>
+                <button class="btn action-btn operator add" data-action="add">+</button>
+                
+                <!-- Row 5 -->
+                <button class="btn number zero" data-value="0">0</button>
+                <button class="btn number decimal" data-value=".">.</button>
+                <button class="btn action-btn equals" data-action="calculate">=</button>
             </div>
         </div>
-        <p class="note">Keyboard supported: numbers, + - * /, Enter (=), Backspace, Esc (clear)</p>
-    </main>
-
-    <script src="script.js"></script>
+    </div>
+    <script src="js/script.js"></script>
 </body>
-
 </html>
