@@ -15,9 +15,6 @@ index.html
 styles.css  
 script.js  
 
-### 🚀 Live Demo
-[Live Demo](https://shubham-coder-a.github.io/CodeAlpha_Calculator/)
-
 
 ### 📸 Screenshots
 (![Add your screenshot here](Screenshot_Calculator.png))
